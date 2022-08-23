@@ -9,6 +9,7 @@ builder.Services.AddControllersWithViews(options =>
 {
 	options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 });
+builder.Services.AddAntiforgery();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -21,7 +22,6 @@ builder.Services.AddCors(options =>
 		});
 });
 builder.Services.AddSingleton<IDataHandler, DataHandler>();
-builder.Services.AddAntiforgery();
 
 var app = builder.Build();
 
