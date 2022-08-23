@@ -1,10 +1,14 @@
+using Microsoft.AspNetCore.Mvc;
 using RecipeAPI;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllersWithViews(options =>
+{
+	options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,6 +21,7 @@ builder.Services.AddCors(options =>
 		});
 });
 builder.Services.AddSingleton<IDataHandler, DataHandler>();
+builder.Services.AddAntiforgery();
 
 var app = builder.Build();
 

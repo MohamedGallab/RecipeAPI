@@ -50,7 +50,7 @@ public class RecipesController : ControllerBase
 
 	// PUT api/<RecipesController>/5
 	[HttpPut("{id}")]
-	public async Task<IActionResult> PutAsync(int id, Recipe editedRecipe)
+	public async Task<IActionResult> PutAsync(Guid id, Recipe editedRecipe)
 	{
 		var recipesList = await _dataHandler.LoadRecipesAsync();
 		if (recipesList.Find(recipe => recipe.Id == editedRecipe.Id) is Recipe recipe)
